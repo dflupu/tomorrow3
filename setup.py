@@ -7,5 +7,5 @@ setup(
     author_email="lupu.daniel.f@gmail.com",
     packages=find_packages(),
     license="MIT License (See LICENSE)",
-    url="https://github.com/dflupu/Tomorrow3"
+    url="https://github.com/dflupu/tomorrow3"
 )
