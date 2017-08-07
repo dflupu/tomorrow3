@@ -29,9 +29,10 @@ def threads(n, queue_max=None):
         def exception_catcher(f, *args, **kwargs):
             try:
                 return f(*args, **kwargs)
-            except Exception as ex:
+            except Exception:
                 print('[tomorrow3] Caught exception.', file=sys.stderr)
                 traceback.print_exc()
+                sys.exit(-1)
 
         @wraps(f)
         def wrapped(*args, **kwargs):
