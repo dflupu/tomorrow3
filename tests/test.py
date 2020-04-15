@@ -5,15 +5,40 @@ DELAY = 0.5
 N = 5
 
 
-def test_throwing_func():
+def test_throws_on_wait_if_necessary():
 
     @threads(10, queue_max=20)
     def throws():
         raise Exception('test exception')
 
     throws()
-    throws.wait()
-    assert 1
+
+    thrown_exception = None
+
+    try:
+        throws.wait()
+    except Exception as ex:
+        thrown_exception = ex
+
+    assert thrown_exception is not None
+
+
+def test_throws_on_next_call_if_necessary():
+
+    @threads(10, queue_max=20)
+    def throws():
+        raise Exception('test exception')
+
+    throws()
+
+    thrown_exception = None
+
+    try:
+        throws()
+    except Exception as ex:
+        thrown_exception = ex
+
+    assert thrown_exception is not None
 
 
 def test_decorator():
